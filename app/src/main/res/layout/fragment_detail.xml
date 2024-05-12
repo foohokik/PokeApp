@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        tools:context=".presentation.detailpokemon.DetailFragment">
+
+
+        <ImageView
+            android:id="@+id/iv_pok"
+            android:layout_width="188dp"
+            android:layout_height="169dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/pokeball_pokemon_svgrepo_com"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_name_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Name"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_pok" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_detail">
+
+            <ImageView
+                android:id="@+id/iv_type_1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/circle2"
+                android:backgroundTint="@color/white"
+                android:paddingRight="15dp"
+                android:paddingBottom="5dp"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_type_2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:background="@drawable/circle"
+                android:backgroundTint="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingEnd="5dp"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="72dp"
+            android:text="Weight"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_detail" />
+
+        <TextView
+            android:id="@+id/tv_weight_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="weight"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tv_weight"
+            app:layout_constraintStart_toStartOf="@+id/tv_weight"
+            app:layout_constraintTop_toBottomOf="@+id/tv_weight" />
+
+        <TextView
+            android:id="@+id/tv_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="48dp"
+            android:text="Height"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_detail" />
+
+        <TextView
+            android:id="@+id/tv_height_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="height"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tv_height"
+            app:layout_constraintStart_toStartOf="@+id/tv_height"
+            app:layout_constraintTop_toBottomOf="@+id/tv_height" />
+
+        <TextView
+            android:id="@+id/tv_hp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="56dp"
+            android:text="HP"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_weight_title" />
+
+        <TextView
+            android:id="@+id/tv_atk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="ATK"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hp" />
+
+        <TextView
+            android:id="@+id/tv_def"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="DEF"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_atk" />
+
+        <com.skydoves.progressview.ProgressView
+            android:id="@+id/progress_hp"
+            android:layout_width="0dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_hp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/tv_hp"
+            app:layout_constraintTop_toTopOf="@+id/tv_hp"
+            app:progressView_colorBackground="@color/white"
+            app:progressView_labelColorInner="@color/white"
+            app:progressView_labelColorOuter="@color/black"
+            app:progressView_labelSize="12sp"
+            app:progressView_radius="12dp" />
+
+        <com.skydoves.progressview.ProgressView
+            android:id="@+id/progress_atk"
+            android:layout_width="0dp"
+            android:layout_height="15dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_atk"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/progress_hp"
+            app:layout_constraintTop_toTopOf="@+id/tv_atk"
+            app:progressView_colorBackground="@color/white"
+            app:progressView_labelColorInner="@color/white"
+            app:progressView_labelColorOuter="@color/black"
+            app:progressView_labelSize="12sp"
+            app:progressView_radius="12dp" />
+
+        <com.skydoves.progressview.ProgressView
+            android:id="@+id/progress_def"
+            android:layout_width="0dp"
+            android:layout_height="15dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_def"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/progress_atk"
+            app:layout_constraintTop_toTopOf="@+id/tv_def"
+            app:progressView_colorBackground="@color/white"
+            app:progressView_labelColorInner="@color/white"
+            app:progressView_labelColorOuter="@color/black"
+            app:progressView_labelSize="12sp"
+            app:progressView_radius="12dp" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar_detail"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.515"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.563" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <TextView
+                android:id="@+id/tv_type_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="type 1"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_type_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="type 2"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
