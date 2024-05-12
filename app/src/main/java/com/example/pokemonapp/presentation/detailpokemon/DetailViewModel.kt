@@ -34,7 +34,7 @@ class DetailViewModel @Inject constructor(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
-    private val _pokemonFlow = MutableStateFlow(Pokemon())
+    private val _pokemonFlow:MutableStateFlow<Pokemon?> = MutableStateFlow (Pokemon())
     val pokemonFlow = _pokemonFlow.asStateFlow()
 
     private val _sideEffects = Channel<SideEffects>()
@@ -60,16 +60,26 @@ class DetailViewModel @Inject constructor(
                 val result = repository.getPokemonInfo(pokemon.name)
                 result
                     .onSuccess { pokemons ->
-                        _pokemonFlow.update {
-                            it.copy(
-                                height = pokemons.height,
-                                name = pokemons.name,
-                                stats = pokemons.stats,
-                                types = pokemons.types,
-                                weight = pokemons.weight,
-                                url = pokemon.url,
-                                color = pokemon.color
-                            )
+                        _pokemonFlow.update {state ->
+                            if (state == null) {
+                               Pokemon(height = pokemons.height,
+                                   name = pokemons.name,
+                                   stats = pokemons.stats,
+                                   types = pokemons.types,
+                                   weight = pokemons.weight,
+                                   url = pokemon.url,
+                                   color = pokemon.color)
+                            } else {
+                                state?.copy(
+                                    height = pokemons.height,
+                                    name = pokemons.name,
+                                    stats = pokemons.stats,
+                                    types = pokemons.types,
+                                    weight = pokemons.weight,
+                                    url = pokemon.url,
+                                    color = pokemon.color
+                                )
+                            }
                         }
                     }
                     .onError { _, message ->
@@ -82,8 +92,8 @@ class DetailViewModel @Inject constructor(
                             )
                         )
                     }
-                _stateProgressBar.value = false
             }
+            _stateProgressBar.value = false
         }
     }
 

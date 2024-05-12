@@ -24,7 +24,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/tv_name_detail"
@@ -37,7 +38,8 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_pok" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_pok"
+            android:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -47,7 +49,8 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name_detail">
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_detail"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/iv_type_1"
@@ -58,7 +61,7 @@
                 android:backgroundTint="@color/white"
                 android:paddingRight="15dp"
                 android:paddingBottom="5dp"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/iv_type_2"
@@ -71,7 +74,7 @@
                 android:backgroundTint="@color/white"
                 android:paddingLeft="15dp"
                 android:paddingEnd="5dp"
-                android:visibility="visible" />
+                android:visibility="gone"/>
 
         </LinearLayout>
 
@@ -86,7 +89,8 @@
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name_detail" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_detail"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/tv_weight_title"
@@ -99,7 +103,8 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/tv_weight"
             app:layout_constraintStart_toStartOf="@+id/tv_weight"
-            app:layout_constraintTop_toBottomOf="@+id/tv_weight" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_weight"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/tv_height"
@@ -112,7 +117,19 @@
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name_detail" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_detail"
+            android:visibility="gone"/>
+
+        <ProgressBar
+            android:id="@+id/progress_bar_detail"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_pok" />
 
         <TextView
             android:id="@+id/tv_height_title"
@@ -125,7 +142,8 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/tv_height"
             app:layout_constraintStart_toStartOf="@+id/tv_height"
-            app:layout_constraintTop_toBottomOf="@+id/tv_height" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_height"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/tv_hp"
@@ -138,7 +156,8 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_weight_title" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_weight_title"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/tv_atk"
@@ -151,7 +170,8 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hp" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_hp"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/tv_def"
@@ -164,7 +184,8 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_atk" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_atk"
+            android:visibility="gone"/>
 
         <com.skydoves.progressview.ProgressView
             android:id="@+id/progress_hp"
@@ -181,7 +202,8 @@
             app:progressView_labelColorInner="@color/white"
             app:progressView_labelColorOuter="@color/black"
             app:progressView_labelSize="12sp"
-            app:progressView_radius="12dp" />
+            app:progressView_radius="12dp"
+            android:visibility="gone"/>
 
         <com.skydoves.progressview.ProgressView
             android:id="@+id/progress_atk"
@@ -196,7 +218,8 @@
             app:progressView_labelColorInner="@color/white"
             app:progressView_labelColorOuter="@color/black"
             app:progressView_labelSize="12sp"
-            app:progressView_radius="12dp" />
+            app:progressView_radius="12dp"
+            android:visibility="gone"/>
 
         <com.skydoves.progressview.ProgressView
             android:id="@+id/progress_def"
@@ -211,24 +234,15 @@
             app:progressView_labelColorInner="@color/white"
             app:progressView_labelColorOuter="@color/black"
             app:progressView_labelSize="12sp"
-            app:progressView_radius="12dp" />
-
-        <ProgressBar
-            android:id="@+id/progress_bar_detail"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.515"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.563" />
+            app:progressView_radius="12dp"
+            android:visibility="gone"/>
 
         <LinearLayout
+            android:id="@+id/linear_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -242,7 +256,8 @@
                 android:text="type 1"
                 android:textColor="@color/white"
                 android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tv_type_2"
@@ -254,7 +269,8 @@
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:visibility="visible" />
+                android:visibility="gone" />
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

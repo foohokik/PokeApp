@@ -1,18 +1,12 @@
 package com.example.pokemonapp.presentation.detailpokemon
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getColor
-import androidx.core.content.ContextCompat.getColorStateList
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -22,7 +16,6 @@ import com.bumptech.glide.Glide
 import com.example.pokemonapp.R
 import com.example.pokemonapp.core.getColorOfType
 import com.example.pokemonapp.core.hide
-import com.example.pokemonapp.core.setTint
 import com.example.pokemonapp.core.show
 import com.example.pokemonapp.databinding.FragmentDetailBinding
 import com.example.pokemonapp.domain.model.detail.Pokemon
@@ -65,8 +58,9 @@ class DetailFragment : Fragment() {
         }
     }
 
-    private fun setContent(state: Pokemon) {
+    private fun setContent(state: Pokemon?) {
         with(binding) {
+            state ?: return
             tvNameDetail.text = state.name
             setTypesState(state)
             state.color?.let {
@@ -136,7 +130,23 @@ class DetailFragment : Fragment() {
         if (!isLoading) {
             with(binding) {
                 progressBarDetail.hide()
+                linearText.show()
                 ivPok.show()
+                ivType1.show()
+                tvNameDetail.show()
+                linearLayout.show()
+                tvWeight.show()
+                tvWeightTitle.show()
+                tvHeight.show()
+                tvHeightTitle.show()
+                tvHp.show()
+                tvDef.show()
+                tvAtk.show()
+                tvType1.show()
+                progressAtk.show()
+                progressDef.show()
+                progressHp.show()
+
             }
         }
     }
@@ -167,7 +177,6 @@ class DetailFragment : Fragment() {
     companion object {
         private const val MAX = 100f
         const val ARG_ID = "ARG_ID"
-        const val ARG = "ARG"
 
         @JvmStatic
         fun getInstance(pokemon: ResultUI.Result): DetailFragment {
