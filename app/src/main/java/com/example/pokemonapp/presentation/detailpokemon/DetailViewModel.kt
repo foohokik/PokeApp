@@ -1,6 +1,5 @@
 package com.example.pokemonapp.presentation.detailpokemon
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,9 +11,7 @@ import com.example.pokemonapp.domain.PokemonRepo
 import com.example.pokemonapp.domain.model.detail.Pokemon
 import com.example.pokemonapp.domain.model.list.ResultUI
 import com.example.pokemonapp.presentation.SideEffects
-import com.example.pokemonapp.presentation.detailpokemon.DetailFragment.Companion.ARG
 import com.example.pokemonapp.presentation.detailpokemon.DetailFragment.Companion.ARG_ID
-import com.example.pokemonapp.presentation.pokemonlist.PokemonListViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler

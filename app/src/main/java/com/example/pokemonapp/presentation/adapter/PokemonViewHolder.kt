@@ -3,7 +3,6 @@ package com.example.pokemonapp.presentation.adapter
 
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.RecyclerView
@@ -71,7 +70,9 @@ class PokemonViewHolder(val binding: PokemonItemBinding) : RecyclerView.ViewHold
                 })
                 .into(ivPokemon)
             pokemonNameTextView.text = pokemon.name
-            root.setOnClickListener { listener.onClickArticle(pokemon) }
+            ivPokemon.transitionName = pokemon.name
+            root.setOnClickListener {
+                listener.onClickArticle(pokemon, ivPokemon) }
         }
 
 }

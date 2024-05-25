@@ -1,12 +1,15 @@
 package com.example.pokemonapp.presentation.pokemonlist
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
+import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.ViewCompat
+import androidx.core.view.doOnPreDraw
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -14,12 +17,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pokemonapp.R
 import com.example.pokemonapp.databinding.FragmentPokemonListBinding
-import com.example.pokemonapp.databinding.PokemonItemBinding
 import com.example.pokemonapp.presentation.SideEffects
 import com.example.pokemonapp.presentation.adapter.ItemDecorator
 import com.example.pokemonapp.presentation.adapter.PokemonAdapter
 import com.example.pokemonapp.presentation.detailpokemon.DetailFragment
-import com.example.vkproductslist.presentation.pagination.OnScrollListener
+import com.example.pokemonapp.presentation.pagination.OnScrollListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -39,6 +41,9 @@ class PokemonList : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentPokemonListBinding.inflate(inflater, container, false)
+        val animation =
+            TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
+        sharedElementEnterTransition = animation
         return binding.root
     }
 
@@ -46,6 +51,10 @@ class PokemonList : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews()
         observe()
+        postponeEnterTransition()
+        binding.rvPokemons.doOnPreDraw {
+            startPostponedEnterTransition()
+        }
     }
 
     private fun observe() {
@@ -81,23 +90,28 @@ class PokemonList : Fragment() {
                     .show()
             }
             is SideEffects.ClickEffect -> {
-                parentFragmentManager
-                    .beginTransaction()
-                    .addToBackStack(null)
-                    .replace(R.id.main_container_view, DetailFragment.getInstance(sideEffects.pokemon))
-                    .commit()
+                sideEffects.imageView?.let {
+                    parentFragmentManager
+                        .beginTransaction()
+                        .setReorderingAllowed(true)
+                        .addSharedElement(
+                            it,
+                            sideEffects.pokemon.name
+                        )
+                        .addToBackStack(null)
+                        .replace(R.id.main_container_view, DetailFragment.getInstance(sideEffects.pokemon, ViewCompat.getTransitionName(sideEffects.imageView).toString() ))
+                        .commit()
+                }
             }
         }
 
     }
 
     private fun renderLoading (isLoading: Boolean) {
-        if (!isLoading) {
             with(binding){
-                progressBar.visibility = View.GONE
-                rvPokemons.visibility = View.VISIBLE
+                progressBar.isVisible = isLoading
+                rvPokemons.isVisible = isLoading.not()
             }
-        }
     }
 
     override fun onDestroyView() {

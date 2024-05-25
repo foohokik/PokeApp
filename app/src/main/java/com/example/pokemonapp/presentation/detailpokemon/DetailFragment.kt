@@ -1,18 +1,24 @@
 package com.example.pokemonapp.presentation.detailpokemon
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.example.pokemonapp.R
 import com.example.pokemonapp.core.getColorOfType
 import com.example.pokemonapp.core.hide
@@ -33,6 +39,14 @@ class DetailFragment : Fragment() {
 
     private val viewModel: DetailViewModel by viewModels()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        postponeEnterTransition()
+        val animation =
+            TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
+        sharedElementEnterTransition = animation
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +54,7 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
+        binding.ivPok.transitionName = arguments?.getParcelable<ResultUI.Result>(ARG_ID)?.name
         return binding.root
     }
 
@@ -68,7 +83,33 @@ class DetailFragment : Fragment() {
                 activity?.window?.statusBarColor = it
             }
 
-            Glide.with(ivPok.context).load(state.url).into(ivPok)
+            Glide.with(ivPok.context)
+                .load(state.url)
+                .listener(
+                    object : RequestListener<Drawable> {
+                        override fun onLoadFailed(
+                            e: GlideException?,
+                            model: Any?,
+                            target: Target<Drawable>,
+                            isFirstResource: Boolean
+                        ): Boolean {
+                            startPostponedEnterTransition()
+                            return false
+                        }
+
+                        override fun onResourceReady(
+                            resource: Drawable,
+                            model: Any,
+                            target: Target<Drawable>?,
+                            dataSource: DataSource,
+                            isFirstResource: Boolean
+                        ): Boolean {
+                            startPostponedEnterTransition()
+                            return false
+                        }
+                    }
+                )
+                .into(ivPok)
             tvHeight.text = state.height.toString()
             tvWeight.text = state.weight.toString()
             setProgressIndicators(state)
@@ -131,7 +172,6 @@ class DetailFragment : Fragment() {
             with(binding) {
                 progressBarDetail.hide()
                 linearText.show()
-                ivPok.show()
                 ivType1.show()
                 tvNameDetail.show()
                 linearLayout.show()
@@ -146,7 +186,6 @@ class DetailFragment : Fragment() {
                 progressAtk.show()
                 progressDef.show()
                 progressHp.show()
-
             }
         }
     }
@@ -177,10 +216,10 @@ class DetailFragment : Fragment() {
     companion object {
         private const val MAX = 100f
         const val ARG_ID = "ARG_ID"
-
+        private const val ARG_TRANSITION = "ARG_TRANSITION"
         @JvmStatic
-        fun getInstance(pokemon: ResultUI.Result): DetailFragment {
-            return DetailFragment().apply { arguments = bundleOf(ARG_ID to pokemon) }
+        fun getInstance(pokemon: ResultUI.Result, transitionName:String): DetailFragment {
+            return DetailFragment().apply { arguments = bundleOf(ARG_ID to pokemon, ARG_TRANSITION to transitionName) }
         }
     }
 

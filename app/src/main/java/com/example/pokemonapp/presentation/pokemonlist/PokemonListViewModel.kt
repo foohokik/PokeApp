@@ -1,6 +1,7 @@
 package com.example.pokemonapp.presentation.pokemonlist
 
 import android.util.Log
+import android.widget.ImageView
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokemonapp.core.network.onError
@@ -94,8 +95,8 @@ constructor(
         }
     }
 
-    override fun onClickArticle(pokemon: ResultUI.Result) {
-        viewModelScope.launch { _sideEffects.send(SideEffects.ClickEffect(pokemon)) }
+    override fun onClickArticle(pokemon: ResultUI.Result, view: ImageView) {
+        viewModelScope.launch { _sideEffects.send(SideEffects.ClickEffect(pokemon, view)) }
     }
 
     override fun isLoading(): Boolean {

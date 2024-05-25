@@ -1,8 +1,7 @@
-package com.example.vkproductslist.presentation.pagination
+package com.example.pokemonapp.presentation.pagination
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pokemonapp.presentation.pagination.PaginationListener
 
 class OnScrollListener(
     private val paginationListener: PaginationListener,
